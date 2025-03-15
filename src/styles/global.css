@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theme-white: hsl(0, 0%, 100%);
+  --color-theme-light-pink: hsl(275, 100%, 97%);
+  --color-theme-grayish-purple: hsl(292, 16%, 49%);
+  --color-theme-dark-purple: hsl(292, 42%, 14%);
+
+  --font-worksans: "WorkSans", "sans-serif";
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@font-face {
+  font-family: "WorkSans";
+  font-style: normal;
+  font-weight: 400 700;
+  src: url("/fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
+}
