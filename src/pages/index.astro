@@ -1,5 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+
+const faqs = await getCollection("faqs");
 ---
 
 <MainLayout title="Frontend Mentor | FAQ Accordion">
