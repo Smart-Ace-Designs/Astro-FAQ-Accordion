@@ -1,8 +1,6 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
-
-const faqs = await getCollection("faqs");
+import FAQCard from "@/components/FAQCard.astro";
 ---
 
 <MainLayout title="Frontend Mentor | FAQ Accordion">
@@ -11,6 +9,10 @@ const faqs = await getCollection("faqs");
       class="h-60 bg-[url(/background-pattern-mobile.svg)] bg-cover bg-center bg-no-repeat md:h-80 md:bg-[url(/background-pattern-desktop.svg)]"
     >
     </div>
-    <div class="bg-theme-light-pink h-screen"></div>
+    <div class="bg-theme-light-pink relative flex h-screen justify-center">
+      <div class="absolute -top-22 w-full px-5">
+        <FAQCard />
+      </div>
+    </div>
   </main>
 </MainLayout>
