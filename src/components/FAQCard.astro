@@ -31,18 +31,29 @@ const faqs = await getCollection("faqs");
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const toggleHidden = (elementId: string): void => {
+    const toggleAnswerVisible = (elementId: string): void => {
       const element = document.getElementById(elementId);
       if (element) {
         element.classList.toggle("max-h-0");
         element.classList.toggle("max-h-[100px]");
-      } else {
-        console.warn(`Element with ID "${elementId}" not found.`);
       }
     };
 
-    const onButtonClick = (answerElement: HTMLParagraphElement) => {
-      toggleHidden(answerElement.id);
+    const toggleImage = (elementId: string): void => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.toggle("hidden");
+      }
+    };
+
+    const onButtonClick = (
+      answerElement: HTMLParagraphElement,
+      imgElements: NodeListOf<HTMLImageElement>,
+    ) => {
+      toggleAnswerVisible(answerElement.id);
+      imgElements.forEach((element) => {
+        toggleImage(element.id);
+      });
     };
 
     const buttonList: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button");
@@ -50,8 +61,9 @@ const faqs = await getCollection("faqs");
       const faqContainer: HTMLElement | null = button.closest(".faq-container");
       if (faqContainer) {
         const answerElement: HTMLParagraphElement | null = faqContainer.querySelector("p");
-        if (answerElement) {
-          button.addEventListener("click", () => onButtonClick(answerElement));
+        const imgElements: NodeListOf<HTMLImageElement> = faqContainer.querySelectorAll("img");
+        if (answerElement && imgElements) {
+          button.addEventListener("click", () => onButtonClick(answerElement, imgElements));
         }
       }
     });
