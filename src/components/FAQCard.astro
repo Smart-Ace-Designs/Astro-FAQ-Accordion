@@ -13,7 +13,7 @@ const faqs = await getCollection("faqs");
       <article class={`faq-container ${index !== faqs.length - 1 ? "border-b-1" : ""}`}>
         <div class="flex flex-row items-center justify-between">
           <h2 class="my-4 font-bold">{data.question}</h2>
-          <button>
+          <button class="hover:cursor-pointer">
             <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
           </button>
         </div>
