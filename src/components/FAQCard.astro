@@ -3,10 +3,56 @@ import { getCollection } from "astro:content";
 const faqs = await getCollection("faqs");
 ---
 
-<section class="bg-theme-white rounded-lg p-4">
-  <div class="flex flex-row space-x-5">
+<section class="bg-theme-white text-theme-dark-purple rounded-lg p-5">
+  <div class="mb-4 flex flex-row space-x-5">
     <img src="/icon-star.svg" alt="Star" width="23" />
-    <h1 class="text-theme-dark-purple text-[32px] font-extrabold">FAQs</h1>
+    <h1 class="text-[32px] font-extrabold">FAQs</h1>
   </div>
-  <ul>{faqs.map(({ data }) => <li>{data.question}</li>)}</ul>
+  {
+    faqs.map(({ data }, index) => (
+      <article class={`faq-container ${index !== faqs.length - 1 ? "border-b-1" : ""}`}>
+        <div class="flex flex-row items-center justify-between">
+          <h2 class="my-4 font-bold">{data.question}</h2>
+          <button>
+            <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
+          </button>
+        </div>
+        <p
+          class="text-theme-grayish-purple mb-4 max-h-0 overflow-hidden text-sm transition-all duration-500"
+          id={`answer-${data.id}`}
+        >
+          {data.answer}
+        </p>
+      </article>
+    ))
+  }
 </section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toggleHidden = (elementId: string): void => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.toggle("max-h-0");
+        element.classList.toggle("max-h-[100px]");
+      } else {
+        console.warn(`Element with ID "${elementId}" not found.`);
+      }
+    };
+
+    const onButtonClick = (answerElement: HTMLParagraphElement) => {
+      toggleHidden(answerElement.id);
+    };
+
+    const buttonList: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button");
+    buttonList.forEach((button) => {
+      const faqContainer: HTMLElement | null = button.closest(".faq-container");
+      if (faqContainer) {
+        const answerElement: HTMLParagraphElement | null = faqContainer.querySelector("p");
+        if (answerElement) {
+          button.addEventListener("click", () => onButtonClick(answerElement));
+        }
+      }
+    });
+  });
+</script>
