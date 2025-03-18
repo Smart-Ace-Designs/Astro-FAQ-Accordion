@@ -15,6 +15,7 @@ const faqs = await getCollection("faqs");
           <h2 class="my-4 font-bold">{data.question}</h2>
           <button class="hover:cursor-pointer">
             <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
+            <img src="/icon-minus.svg" alt="Expand" id={`minus-${data.id}`} class="hidden" />
           </button>
         </div>
         <p
