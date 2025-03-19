@@ -11,15 +11,15 @@ const faqs = await getCollection("faqs");
   {
     faqs.map(({ data }, index) => (
       <article class={`faq-container ${index !== faqs.length - 1 ? "border-b-1" : ""}`}>
-        <div class="flex flex-row items-center justify-between">
-          <h2 class="my-4 font-bold">{data.question}</h2>
-          <button class="hover:cursor-pointer">
+        <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between py-4">
+          <h2 class="font-bold">{data.question}</h2>
+          <button class="cursor-pointer">
             <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
             <img src="/icon-minus.svg" alt="Expand" id={`minus-${data.id}`} class="hidden" />
           </button>
         </div>
         <p
-          class="text-theme-grayish-purple mb-4 max-h-0 overflow-hidden text-sm transition-all duration-400"
+          class="text-theme-grayish-purple max-h-0 overflow-hidden text-sm transition-all duration-400"
           id={`answer-${data.id}`}
         >
           {data.answer}
@@ -46,7 +46,7 @@ const faqs = await getCollection("faqs");
       }
     };
 
-    const onButtonClick = (
+    const onQuestionClick = (
       answerElement: HTMLParagraphElement,
       imgElements: NodeListOf<HTMLImageElement>,
     ) => {
@@ -56,14 +56,14 @@ const faqs = await getCollection("faqs");
       });
     };
 
-    const buttonList: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button");
-    buttonList.forEach((button) => {
-      const faqContainer: HTMLElement | null = button.closest(".faq-container");
+    const questionList: NodeListOf<HTMLElement> = document.querySelectorAll(".question");
+    questionList.forEach((question) => {
+      const faqContainer: HTMLElement | null = question.closest(".faq-container");
       if (faqContainer) {
         const answerElement: HTMLParagraphElement | null = faqContainer.querySelector("p");
         const imgElements: NodeListOf<HTMLImageElement> = faqContainer.querySelectorAll("img");
         if (answerElement && imgElements) {
-          button.addEventListener("click", () => onButtonClick(answerElement, imgElements));
+          question.addEventListener("click", () => onQuestionClick(answerElement, imgElements));
         }
       }
     });
