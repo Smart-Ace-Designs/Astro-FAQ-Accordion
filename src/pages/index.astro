@@ -4,15 +4,9 @@ import FAQCard from "@/components/FAQCard.astro";
 ---
 
 <MainLayout title="Frontend Mentor | FAQ Accordion">
-  <main>
-    <div
-      class="h-60 bg-[url(/background-pattern-mobile.svg)] bg-cover bg-center bg-no-repeat xl:h-80 xl:bg-[url(/background-pattern-desktop.svg)]"
-    >
-    </div>
-    <div class="bg-theme-light-pink relative flex h-screen justify-center">
-      <div class="absolute -top-22 w-full px-5 md:px-16 lg:max-w-4/6 xl:max-w-2/5 xl:px-0">
-        <FAQCard />
-      </div>
-    </div>
+  <main
+    class="bg-theme-light-pink flex min-h-screen items-center justify-center bg-[url(/background-pattern-mobile.svg)] bg-contain bg-no-repeat md:bg-[url(/background-pattern-desktop.svg)]"
+  >
+    <div class="px-6 sm:px-12 md:px-24"><FAQCard /></div>
   </main>
 </MainLayout>

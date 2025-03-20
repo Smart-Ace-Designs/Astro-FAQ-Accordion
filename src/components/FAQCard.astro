@@ -5,7 +5,7 @@ const faqs = await getCollection("faqs");
 
 <section class="bg-theme-white text-theme-dark-purple rounded-lg p-5">
   <div class="mb-4 flex flex-row space-x-5">
-    <img src="/icon-star.svg" alt="Star" width="23" />
+    <img src="/icon-star.svg" alt="Star" class="w-5" />
     <h1 class="text-[32px] font-extrabold">FAQs</h1>
   </div>
   {
@@ -13,13 +13,11 @@ const faqs = await getCollection("faqs");
       <article class={`faq-container ${index !== faqs.length - 1 ? "border-b-1" : ""}`}>
         <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between py-4">
           <h2 class="font-bold">{data.question}</h2>
-          <button class="cursor-pointer">
-            <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
-            <img src="/icon-minus.svg" alt="Expand" id={`minus-${data.id}`} class="hidden" />
-          </button>
+          <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
+          <img src="/icon-minus.svg" alt="Collapse" id={`minus-${data.id}`} class="hidden" />
         </div>
         <p
-          class="text-theme-grayish-purple max-h-0 overflow-hidden text-sm transition-all duration-400"
+          class={`text-theme-grayish-purple overflow-hidden text-sm transition-all duration-400 ${index !== 0 ? "max-h-0" : "max-h-24"}`}
           id={`answer-${data.id}`}
         >
           {data.answer}
@@ -35,7 +33,7 @@ const faqs = await getCollection("faqs");
       const element = document.getElementById(elementId);
       if (element) {
         element.classList.toggle("max-h-0");
-        element.classList.toggle("max-h-[100px]");
+        element.classList.toggle("max-h-24");
       }
     };
 

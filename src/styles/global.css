@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --breakpoint-xs: 23.5rem;
+
   --color-theme-white: hsl(0, 0%, 100%);
   --color-theme-light-pink: hsl(275, 100%, 97%);
   --color-theme-grayish-purple: hsl(292, 16%, 49%);
