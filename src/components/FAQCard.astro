@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 const faqs = await getCollection("faqs");
 ---
 
-<section class="bg-theme-white text-theme-dark-purple rounded-lg md:w-3xl lg:w-4xl">
+<section class="bg-theme-white text-theme-dark-purple rounded-lg shadow-xl md:w-3xl lg:w-4xl">
   <div class="flex flex-row space-x-5 px-4 pt-4">
     <img src="/icon-star.svg" alt="Star" class="w-5" />
     <h1 class="text-[32px] font-extrabold">FAQs</h1>
@@ -15,7 +15,7 @@ const faqs = await getCollection("faqs");
           class={`faq-container flex flex-col gap-4 px-6 py-5 ${index !== faqs.length - 1 ? "border-b-1" : ""}`}
         >
           <button class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
-            <h2 class="leading-tight font-bold">{data.question}</h2>
+            <h2 class="text-left leading-tight font-bold">{data.question}</h2>
             <img
               src="/icon-plus.svg"
               alt="Expand"
