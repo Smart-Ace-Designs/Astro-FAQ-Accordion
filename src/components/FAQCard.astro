@@ -14,7 +14,7 @@ const faqs = await getCollection("faqs");
         <li
           class={`faq-container flex flex-col gap-4 px-6 py-5 ${index !== faqs.length - 1 ? "border-b-1" : ""}`}
         >
-          <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
+          <button class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
             <h2 class="leading-tight font-bold">{data.question}</h2>
             <img
               src="/icon-plus.svg"
@@ -28,7 +28,7 @@ const faqs = await getCollection("faqs");
               id={`minus-${data.id}`}
               class={`${index !== 0 && "hidden"}`}
             />
-          </div>
+          </button>
           <p
             class={`text-theme-grayish-purple text-sm ${index !== 0 && "hidden"}`}
             id={`answer-${data.id}`}
