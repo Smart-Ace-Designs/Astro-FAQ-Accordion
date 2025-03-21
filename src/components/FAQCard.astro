@@ -3,21 +3,33 @@ import { getCollection } from "astro:content";
 const faqs = await getCollection("faqs");
 ---
 
-<section class="bg-theme-white text-theme-dark-purple rounded-lg p-5">
-  <div class="mb-4 flex flex-row space-x-5">
+<section class="bg-theme-white text-theme-dark-purple rounded-lg md:w-3xl lg:w-4xl">
+  <div class="flex flex-row space-x-5 px-4 pt-4">
     <img src="/icon-star.svg" alt="Star" class="w-5" />
     <h1 class="text-[32px] font-extrabold">FAQs</h1>
   </div>
   {
     faqs.map(({ data }, index) => (
-      <article class={`faq-container ${index !== faqs.length - 1 ? "border-b-1" : ""}`}>
-        <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between py-4">
-          <h2 class="font-bold">{data.question}</h2>
-          <img src="/icon-plus.svg" alt="Expand" id={`plus-${data.id}`} />
-          <img src="/icon-minus.svg" alt="Collapse" id={`minus-${data.id}`} class="hidden" />
+      <article
+        class={`faq-container flex flex-col gap-4 px-6 py-5 ${index !== faqs.length - 1 ? "border-b-1" : ""}`}
+      >
+        <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
+          <h2 class="leading-tight font-bold">{data.question}</h2>
+          <img
+            src="/icon-plus.svg"
+            alt="Expand"
+            id={`plus-${data.id}`}
+            class={`${index === 0 && "hidden"}`}
+          />
+          <img
+            src="/icon-minus.svg"
+            alt="Collapse"
+            id={`minus-${data.id}`}
+            class={`${index !== 0 && "hidden"}`}
+          />
         </div>
         <p
-          class={`text-theme-grayish-purple overflow-hidden text-sm transition-all duration-400 ${index !== 0 ? "max-h-0" : "max-h-24"}`}
+          class={`text-theme-grayish-purple text-sm ${index !== 0 && "hidden"}`}
           id={`answer-${data.id}`}
         >
           {data.answer}
@@ -32,8 +44,7 @@ const faqs = await getCollection("faqs");
     const toggleAnswerVisible = (elementId: string): void => {
       const element = document.getElementById(elementId);
       if (element) {
-        element.classList.toggle("max-h-0");
-        element.classList.toggle("max-h-24");
+        element.classList.toggle("hidden");
       }
     };
 
