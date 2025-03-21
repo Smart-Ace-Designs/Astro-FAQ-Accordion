@@ -8,35 +8,37 @@ const faqs = await getCollection("faqs");
     <img src="/icon-star.svg" alt="Star" class="w-5" />
     <h1 class="text-[32px] font-extrabold">FAQs</h1>
   </div>
-  {
-    faqs.map(({ data }, index) => (
-      <article
-        class={`faq-container flex flex-col gap-4 px-6 py-5 ${index !== faqs.length - 1 ? "border-b-1" : ""}`}
-      >
-        <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
-          <h2 class="leading-tight font-bold">{data.question}</h2>
-          <img
-            src="/icon-plus.svg"
-            alt="Expand"
-            id={`plus-${data.id}`}
-            class={`${index === 0 && "hidden"}`}
-          />
-          <img
-            src="/icon-minus.svg"
-            alt="Collapse"
-            id={`minus-${data.id}`}
-            class={`${index !== 0 && "hidden"}`}
-          />
-        </div>
-        <p
-          class={`text-theme-grayish-purple text-sm ${index !== 0 && "hidden"}`}
-          id={`answer-${data.id}`}
+  <ul>
+    {
+      faqs.map(({ data }, index) => (
+        <li
+          class={`faq-container flex flex-col gap-4 px-6 py-5 ${index !== faqs.length - 1 ? "border-b-1" : ""}`}
         >
-          {data.answer}
-        </p>
-      </article>
-    ))
-  }
+          <div class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
+            <h2 class="leading-tight font-bold">{data.question}</h2>
+            <img
+              src="/icon-plus.svg"
+              alt="Expand"
+              id={`plus-${data.id}`}
+              class={`${index === 0 && "hidden"}`}
+            />
+            <img
+              src="/icon-minus.svg"
+              alt="Collapse"
+              id={`minus-${data.id}`}
+              class={`${index !== 0 && "hidden"}`}
+            />
+          </div>
+          <p
+            class={`text-theme-grayish-purple text-sm ${index !== 0 && "hidden"}`}
+            id={`answer-${data.id}`}
+          >
+            {data.answer}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
 </section>
 
 <script>
