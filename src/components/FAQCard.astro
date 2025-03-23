@@ -4,7 +4,7 @@ const faqs = await getCollection("faqs");
 ---
 
 <section
-  class="bg-theme-white text-theme-dark-purple rounded-lg shadow-xl md:w-[620px] md:rounded-2xl"
+  class="bg-theme-white text-theme-dark-purple rounded-lg shadow-xl md:w-[600px] md:rounded-2xl"
 >
   <div class="flex flex-row space-x-5 px-4 pt-4 md:px-8 md:pt-12 md:pb-6">
     <img src="/icon-star.svg" alt="Star" class="w-5 md:w-10" />
@@ -17,7 +17,7 @@ const faqs = await getCollection("faqs");
           class={`faq-container flex flex-col gap-4 py-5 ${index !== faqs.length - 1 ? "border-theme-light-pink border-b-1" : ""}`}
         >
           <button class="question hover:text-theme-bright-purple flex cursor-pointer flex-row items-center justify-between gap-6">
-            <h2 class="text-left leading-tight font-bold md:text-[1.2rem]">{data.question}</h2>
+            <h2 class="text-left leading-tight font-bold md:text-[1.15rem]">{data.question}</h2>
             <img
               src="/icon-plus.svg"
               alt="Expand"
