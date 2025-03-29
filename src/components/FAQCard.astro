@@ -22,13 +22,13 @@ const faqs = await getCollection("faqs");
               src="/icon-plus.svg"
               alt="Expand"
               id={`plus-${data.id}`}
-              class={`${index === 0 && "hidden"}`}
+              class={`plus ${index === 0 && "hidden"}`}
             />
             <img
               src="/icon-minus.svg"
               alt="Collapse"
               id={`minus-${data.id}`}
-              class={`${index !== 0 && "hidden"}`}
+              class={`minus ${index !== 0 && "hidden"}`}
             />
           </button>
           <p
@@ -46,10 +46,35 @@ const faqs = await getCollection("faqs");
 <script>
   document.addEventListener("astro:page-load", () => {
     const toggleAnswerVisible = (elementId: string): void => {
-      const element = document.getElementById(elementId);
-      if (element) {
-        element.classList.toggle("hidden");
-      }
+      const answers = document.querySelectorAll("p");
+      answers.forEach((answer) => {
+        if (answer.id === elementId) {
+          answer.classList.toggle("hidden");
+        } else {
+          answer.classList.add("hidden");
+        }
+      });
+    };
+
+    const resetImageVisibility = (imgElements: NodeListOf<HTMLImageElement>) => {
+      const plusImages = document.querySelectorAll('[id^="plus-"]');
+      const minusImages = document.querySelectorAll('[id^="minus-"]');
+
+      plusImages.forEach((image) => {
+        if (!Array.from(imgElements).some((element) => element.id === image.id)) {
+          image.classList.remove("hidden");
+        }
+      });
+
+      minusImages.forEach((image) => {
+        if (!Array.from(imgElements).some((element) => element.id === image.id)) {
+          image.classList.add("hidden");
+        }
+      });
+
+      imgElements.forEach((element) => {
+        toggleImage(element.id);
+      });
     };
 
     const toggleImage = (elementId: string): void => {
@@ -64,9 +89,7 @@ const faqs = await getCollection("faqs");
       imgElements: NodeListOf<HTMLImageElement>,
     ) => {
       toggleAnswerVisible(answerElement.id);
-      imgElements.forEach((element) => {
-        toggleImage(element.id);
-      });
+      resetImageVisibility(imgElements);
     };
 
     const questionList: NodeListOf<HTMLElement> = document.querySelectorAll(".question");
