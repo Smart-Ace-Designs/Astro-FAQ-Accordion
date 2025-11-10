@@ -15,7 +15,7 @@ const faqs = await getCollection("faqs");
       faqs.map(({ data }, index) => (
         <li
           id={`faq-${data.id}`}
-          class={`faq-container flex flex-col gap-4 py-6 ${index !== faqs.length - 1 ? "border-b-1 border-theme-light-pink" : ""}`}
+          class={`faq-container flex flex-col gap-4 py-6 ${index !== faqs.length - 1 ? "border-b border-theme-light-pink" : ""}`}
         >
           <button
             class="question flex cursor-pointer flex-row items-center justify-between gap-6 hover:text-theme-bright-purple"
