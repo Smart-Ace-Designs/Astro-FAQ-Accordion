@@ -15,7 +15,7 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: "Work Sans",
         cssVariable: "--font-worksans",
-        weights: ["400", "700", "800"],
+        weights: [400, 700, 800],
         styles: ["normal"],
         subsets: ["latin"],
       },
