@@ -17,7 +17,6 @@ export default defineConfig({
         cssVariable: "--font-worksans",
         weights: [400, 700, 800],
         styles: ["normal"],
-        subsets: ["latin"],
       },
     ],
   },
