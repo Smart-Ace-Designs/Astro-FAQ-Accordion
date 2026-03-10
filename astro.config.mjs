@@ -8,15 +8,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Work Sans",
-        cssVariable: "--font-worksans",
-        weights: [400, 700, 800],
-        styles: ["normal"],
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Work Sans",
+      cssVariable: "--font-worksans",
+      weights: [400, 700, 800],
+      styles: ["normal"],
+    },
+  ],
 });
