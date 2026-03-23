@@ -4,10 +4,10 @@ const faqs = await getCollection("faqs");
 ---
 
 <section
-  class="rounded-lg bg-theme-white text-theme-dark-purple shadow-xl md:w-[600px] md:rounded-2xl md:pb-4"
+  class="rounded-lg bg-theme-white text-theme-dark-purple shadow-xl md:w-150 md:rounded-2xl md:pb-4"
 >
   <div class="flex flex-row space-x-5 px-4 pt-4 md:px-8 md:pt-12 md:pb-3">
-    <img src="/icon-star.svg" alt="Star" class="w-5 md:w-10" />
+    <img src="icon-star.svg" alt="Star" class="w-5 md:w-10" />
     <h1 class="text-[32px] font-extrabold md:text-6xl">FAQs</h1>
   </div>
   <ul class="mx-6 md:mx-10">
@@ -24,13 +24,13 @@ const faqs = await getCollection("faqs");
           >
             <h2 class="text-left leading-tight font-bold md:text-[1.12rem]">{data.question}</h2>
             <img
-              src="/icon-plus.svg"
+              src="icon-plus.svg"
               alt="Expand"
               id={`plus-${data.id}`}
               class={`plus ${index === 0 && "hidden"}`}
             />
             <img
-              src="/icon-minus.svg"
+              src="icon-minus.svg"
               alt="Collapse"
               id={`minus-${data.id}`}
               class={`minus ${index !== 0 && "hidden"}`}
