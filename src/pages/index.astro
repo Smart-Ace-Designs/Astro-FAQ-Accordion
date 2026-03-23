@@ -1,6 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
 import FAQCard from "@/components/FAQCard.astro";
+const mobileBg = `url(${import.meta.env.BASE_URL}background-pattern-mobile.svg)`;
+const desktopBg = `url(${import.meta.env.BASE_URL}background-pattern-desktop.svg)`;
 ---
 
 <MainLayout
@@ -8,8 +10,20 @@ import FAQCard from "@/components/FAQCard.astro";
   description="A FAQ accordion component challenge from Frontend Mentor."
 >
   <main
-    class="flex min-h-screen items-center justify-center bg-theme-light-pink bg-[url(background-pattern-mobile.svg)] bg-contain bg-no-repeat md:bg-[url(background-pattern-desktop.svg)] lg:items-start lg:pt-69"
+    class="responsive-bg md:bg-desktop flex min-h-screen items-center justify-center bg-theme-light-pink bg-contain bg-no-repeat lg:items-start lg:pt-69"
   >
     <div class="px-6 sm:px-12 md:px-24"><FAQCard /></div>
   </main>
 </MainLayout>
+
+<style define:vars={{ mobileBg, desktopBg }}>
+  .responsive-bg {
+    background-image: var(--mobileBg);
+  }
+
+  @media (min-width: 768px) {
+    .responsive-bg {
+      background-image: var(--desktopBg);
+    }
+  }
+</style>
