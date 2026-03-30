@@ -17,26 +17,29 @@ const faqs = await getCollection("faqs");
           id={`faq-${data.id}`}
           class={`faq-container flex flex-col gap-4 py-6 ${index !== faqs.length - 1 ? "border-b border-theme-light-pink" : ""}`}
         >
-          <button
-            type="button"
-            class="question flex cursor-pointer flex-row items-center justify-between gap-6 hover:text-theme-bright-purple"
-            aria-expanded={index === 0 ? "true" : "false"}
-            aria-controls={`answer-${data.id}`}
-          >
-            <h2 class="text-left leading-tight font-bold md:text-[1.12rem]">{data.question}</h2>
-            <img
-              src="icon-plus.svg"
-              alt="Expand"
-              id={`plus-${data.id}`}
-              class={`plus ${index === 0 && "hidden"}`}
-            />
-            <img
-              src="icon-minus.svg"
-              alt="Collapse"
-              id={`minus-${data.id}`}
-              class={`minus ${index !== 0 && "hidden"}`}
-            />
-          </button>
+          <h2 class="text-left leading-tight font-bold md:text-[1.12rem]">
+            <button
+              type="button"
+              class="question flex w-full cursor-pointer flex-row items-center justify-between gap-6 text-left hover:text-theme-bright-purple"
+              aria-expanded={index === 0 ? "true" : "false"}
+              aria-controls={`answer-${data.id}`}
+            >
+              {data.question}
+
+              <img
+                src="icon-plus.svg"
+                alt="Expand"
+                id={`plus-${data.id}`}
+                class={`plus ${index === 0 && "hidden"}`}
+              />
+              <img
+                src="icon-minus.svg"
+                alt="Collapse"
+                id={`minus-${data.id}`}
+                class={`minus ${index !== 0 && "hidden"}`}
+              />
+            </button>
+          </h2>
           <p
             class={`text-sm text-theme-grayish-purple md:text-base ${index !== 0 && "hidden"}`}
             id={`answer-${data.id}`}
